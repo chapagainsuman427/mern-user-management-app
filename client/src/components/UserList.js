@@ -22,12 +22,14 @@ const UserList = () => {
 
   // Handle delete user
   const handleDelete = async (id) => {
-    try {
-      await axios.delete(`http://localhost:5000/api/users/${id}`);
-      setUsers(users.filter(user => user._id !== id));  // Remove deleted user from state
-    } catch (err) {
-      setError('Error deleting user!');
-      console.error('Error deleting user:', err); // Log the error for debugging
+    if (window.confirm('Are you sure you want to delete this user?')) {
+      try {
+        await axios.delete(`http://localhost:5000/api/users/${id}`);
+        setUsers(users.filter(user => user._id !== id)); // Remove deleted user from state
+      } catch (err) {
+        setError('Error deleting user!');
+        console.error('Error deleting user:', err); // Log the error for debugging
+      }
     }
   };
 
@@ -43,7 +45,8 @@ const UserList = () => {
               <Link to={`/edit/${user._id}`} style={{ marginLeft: '10px' }}>Edit</Link>
               <button 
                 onClick={() => handleDelete(user._id)} 
-                style={{ marginLeft: '10px', cursor: 'pointer' }}>
+                style={{ marginLeft: '10px', cursor: 'pointer' }}
+              >
                 Delete
               </button>
             </li>
