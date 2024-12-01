@@ -22,6 +22,7 @@ const EditUser = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Check if userId is available
     if (!userId) {
       setError('No userId found');
       return;
@@ -31,6 +32,12 @@ const EditUser = () => {
       try {
         const response = await axios.get(`http://localhost:5000/api/users/${userId}`);
         const userData = response.data;
+
+        // Check if userData is valid
+        if (!userData) {
+          setError('User not found');
+          return;
+        }
 
         if (userData.dob) {
           userData.dob = new Date(userData.dob).toISOString().split('T')[0];
@@ -60,7 +67,7 @@ const EditUser = () => {
     if (!/^[\d\s()+-]+$/.test(user.phoneNumber)) errors.phoneNumber = 'Phone number is invalid';
     if (!user.email) errors.email = 'Email is required';
     if (!/\S+@\S+\.\S+/.test(user.email)) errors.email = 'Email is invalid';
-    
+
     return errors;
   };
 
@@ -93,7 +100,6 @@ const EditUser = () => {
       console.error('Error updating user:', err);
       setError('Error updating user!');
       alert('Error updating user! Please try again.');
-
     }
   };
 

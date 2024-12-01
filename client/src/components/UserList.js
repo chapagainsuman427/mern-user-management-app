@@ -39,10 +39,12 @@ const UserList = () => {
     { headerName: 'First Name', field: 'firstName', sortable: true, filter: true },
     { headerName: 'Last Name', field: 'lastName', sortable: true, filter: true },
     { headerName: 'Email', field: 'email', sortable: true, filter: true },
+    { headerName: 'Country', field: 'country', sortable: true, filter: true }, // Added Country
+    { headerName: 'Phone Number', field: 'phoneNumber', sortable: true, filter: true }, // Added Phone Number
     {
       headerName: 'Actions',
       field: 'actions',
-      cellRenderer: (params) => {
+      cellRenderer: (params) => { // Changed to cellRenderer
         return (
           <div>
             <button
@@ -81,13 +83,13 @@ const UserList = () => {
       <h2>User List</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <div className="ag-theme-alpine" style={{ height: '500px', width: '100%' }}>
-            <AgGridReact
-                columnDefs={columnDefs}
-                rowData={users}
-                pagination={true}
-                paginationPageSize={10} // Set default page size to 10
-                paginationPageSizeSelector={[10, 20, 50, 100]} // Ensure 10 is included
-      />
+        <AgGridReact
+          columnDefs={columnDefs}
+          rowData={users}
+          pagination={true}
+          paginationPageSize={10} // Set default page size to 10
+          paginationPageSizeSelector={[10, 20, 50, 100]} // Ensure 10 is included
+        />
       </div>
     </div>
   );
