@@ -34,7 +34,7 @@ const AddUser = () => {
     if (!/^[\d\s()+-]+$/.test(user.phoneNumber)) errors.phoneNumber = 'Phone number is invalid';
     if (!user.email) errors.email = 'Email is required';
     if (!/\S+@\S+\.\S+/.test(user.email)) errors.email = 'Email is invalid';
-    
+
     return errors;
   };
 
@@ -63,9 +63,7 @@ const AddUser = () => {
     } catch (err) {
       console.error('Error adding user:', err);
       setError('Error adding user!');
-
       alert('Error adding user! Please try again.');
-
     }
   };
 
