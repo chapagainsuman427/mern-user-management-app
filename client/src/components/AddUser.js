@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import '../static/css/styles.css'; // Assuming you have styles.css for the styling
 
 const AddUser = () => {
   const [user, setUser] = useState({
@@ -42,10 +43,13 @@ const AddUser = () => {
     e.preventDefault();
 
     const validationErrors = validateForm();
+    setFormErrors(validationErrors); // Set validation errors
+  
+    // If there are validation errors, do not proceed with the submission
     if (Object.keys(validationErrors).length > 0) {
-      setFormErrors(validationErrors);
       return;
     }
+  
 
     try {
       const newUser = { ...user };
@@ -76,11 +80,11 @@ const AddUser = () => {
   };
 
   return (
-    <div>
-      <h2>Add New User</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    <div className="form-container">
+      <h2 className="form-title">Add New User</h2>
+      {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label>First Name:</label>
           <input
             type="text"
@@ -89,9 +93,9 @@ const AddUser = () => {
             onChange={handleInputChange}
             required
           />
-          {formErrors.firstName && <p style={{ color: 'red' }}>{formErrors.firstName}</p>}
+          {formErrors.firstName && <p className="error">{formErrors.firstName}</p>}
         </div>
-        <div>
+        <div className="form-group">
           <label>Last Name:</label>
           <input
             type="text"
@@ -100,9 +104,9 @@ const AddUser = () => {
             onChange={handleInputChange}
             required
           />
-          {formErrors.lastName && <p style={{ color: 'red' }}>{formErrors.lastName}</p>}
+          {formErrors.lastName && <p className="error">{formErrors.lastName}</p>}
         </div>
-        <div>
+        <div className="form-group">
           <label>Date of Birth:</label>
           <input
             type="date"
@@ -111,9 +115,9 @@ const AddUser = () => {
             onChange={handleInputChange}
             required
           />
-          {formErrors.dob && <p style={{ color: 'red' }}>{formErrors.dob}</p>}
+          {formErrors.dob && <p className="error">{formErrors.dob}</p>}
         </div>
-        <div>
+        <div className="form-group">
           <label>Address Line 1:</label>
           <input
             type="text"
@@ -122,9 +126,18 @@ const AddUser = () => {
             onChange={handleInputChange}
             required
           />
-          {formErrors.address1 && <p style={{ color: 'red' }}>{formErrors.address1}</p>}
+          {formErrors.address1 && <p className="error">{formErrors.address1}</p>}
         </div>
-        <div>
+        <div className="form-group">
+          <label>Address Line 2:</label>
+          <input
+            type="text"
+            name="address2"
+            value={user.address2}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="form-group">
           <label>City:</label>
           <input
             type="text"
@@ -133,9 +146,9 @@ const AddUser = () => {
             onChange={handleInputChange}
             required
           />
-          {formErrors.city && <p style={{ color: 'red' }}>{formErrors.city}</p>}
+          {formErrors.city && <p className="error">{formErrors.city}</p>}
         </div>
-        <div>
+        <div className="form-group">
           <label>Postal Code:</label>
           <input
             type="text"
@@ -144,9 +157,9 @@ const AddUser = () => {
             onChange={handleInputChange}
             required
           />
-          {formErrors.postalCode && <p style={{ color: 'red' }}>{formErrors.postalCode}</p>}
+          {formErrors.postalCode && <p className="error">{formErrors.postalCode}</p>}
         </div>
-        <div>
+        <div className="form-group">
           <label>Country:</label>
           <input
             type="text"
@@ -155,9 +168,9 @@ const AddUser = () => {
             onChange={handleInputChange}
             required
           />
-          {formErrors.country && <p style={{ color: 'red' }}>{formErrors.country}</p>}
+          {formErrors.country && <p className="error">{formErrors.country}</p>}
         </div>
-        <div>
+        <div className="form-group">
           <label>Phone Number:</label>
           <input
             type="text"
@@ -166,9 +179,9 @@ const AddUser = () => {
             onChange={handleInputChange}
             required
           />
-          {formErrors.phoneNumber && <p style={{ color: 'red' }}>{formErrors.phoneNumber}</p>}
+          {formErrors.phoneNumber && <p className="error">{formErrors.phoneNumber}</p>}
         </div>
-        <div>
+        <div className="form-group">
           <label>Email:</label>
           <input
             type="email"
@@ -177,9 +190,9 @@ const AddUser = () => {
             onChange={handleInputChange}
             required
           />
-          {formErrors.email && <p style={{ color: 'red' }}>{formErrors.email}</p>}
+          {formErrors.email && <p className="error">{formErrors.email}</p>}
         </div>
-        <div>
+        <div className="form-group">
           <label>Notes:</label>
           <textarea
             name="userNotes"
@@ -187,22 +200,19 @@ const AddUser = () => {
             onChange={handleInputChange}
           />
         </div>
+        <div className="form-actions">
         <div style={{ display: 'flex', justifyContent: 'flex-start', gap: '10px', marginTop: '20px' }}>
-          <button type="submit" style={{ padding: '10px 20px', borderRadius: '5px' }}>Add User</button>
-          {/* Back Home Button */}
-          <button 
-            onClick={() => navigate('/')} 
-            style={{
-              padding: '10px 20px',
-              borderRadius: '5px',
-              cursor: 'pointer',
-              color: 'white',
-              backgroundColor: '#007bff',
-              border: 'none',
-            }}
-          >
-            Back Home
-          </button>
+  <button type="submit" className="action-btn">Add User</button>
+  <button
+    onClick={(e) => {
+      e.preventDefault();
+      navigate('/');
+    }}
+    className="go-back-btn"
+  >
+    Back Home
+  </button>
+</div>
         </div>
       </form>
     </div>

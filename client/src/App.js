@@ -5,6 +5,8 @@ import AddUser from './components/AddUser';
 import EditUser from './components/EditUser';
 import DeleteUser from './components/DeleteUser';
 import Navbar from './components/Navbar'; 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const App = () => {
   return (

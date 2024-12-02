@@ -1,42 +1,46 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from 'evergreen-ui'; // Import Evergreen UI Button
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 
 const Navbar = () => {
   return (
-    <nav style={styles.navbar}>
-        <Link to="/" style={styles.title}>
-        User Management Application
-      </Link>
-      <div>
-        <Link to="/add" style={styles.button}>
-          Add User
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div className="container-fluid">
+        {/* Link to Home */}
+        <Link className="navbar-brand" to="/">
+          User Management Application
         </Link>
+        
+        {/* Collapsible Button for smaller screens */}
+        <button 
+          className="navbar-toggler" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="#navbarNav" 
+          aria-controls="navbarNav" 
+          aria-expanded="false" 
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        {/* Navbar links */}
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ms-auto"> {/* ms-auto aligns the button to the right */}
+            <li className="nav-item">
+              {/* Evergreen UI Button wrapped inside Link for routing */}
+              <Link to="/add" className="nav-link">
+                <Button appearance="primary" intent="success" padding={8} marginLeft={8}>
+                  Add User
+                </Button>
+              </Link>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   );
-};
-
-const styles = {
-  navbar: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '10px 20px',
-    backgroundColor: '#007bff',
-    color: 'white',
-  },
-  title: {
-    color: 'white',
-    padding: '10px 15px',
-    margin: 0,
-  },
-  button: {
-    textDecoration: 'none',
-    color: 'white',
-    backgroundColor: '#28a745',
-    padding: '10px 15px',
-    borderRadius: '5px',
-  },
 };
 
 export default Navbar;

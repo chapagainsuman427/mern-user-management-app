@@ -4,6 +4,8 @@ import { AgGridReact } from 'ag-grid-react';
 import { Link } from 'react-router-dom';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
+import '../static/css/styles.css'; // Assuming you have styles.css for the styling
+
 
 const UserList = () => {
   const [users, setUsers] = useState([]); // All users
@@ -59,7 +61,7 @@ const UserList = () => {
     const idsToDelete = selectedRows.map((row) => row._id);
     if (window.confirm(`Are you sure you want to delete ${selectedRows.length} user(s)?`)) {
       try {
-        const response = await axios.delete('http://localhost:5000/api/users', {
+        await axios.delete('http://localhost:5000/api/users', {
           data: { ids: idsToDelete },
         });
         setUsers((prevUsers) => prevUsers.filter((user) => !idsToDelete.includes(user._id)));
@@ -80,11 +82,11 @@ const UserList = () => {
       headerCheckboxSelection: true, // Checkbox in header for bulk selection
       width: 100,
     },
-    { headerName: 'First Name', field: 'firstName', sortable: true, filter: true },
-    { headerName: 'Last Name', field: 'lastName', sortable: true, filter: true },
-    { headerName: 'Email', field: 'email', sortable: true, filter: true },
-    { headerName: 'Country', field: 'country', sortable: true, filter: true },
-    { headerName: 'Phone Number', field: 'phoneNumber', sortable: true, filter: true },
+    { headerName: 'First Name', field: 'firstName', sortable: true, filter: true, width: 120 }, // Reduced width
+    { headerName: 'Last Name', field: 'lastName', sortable: true, filter: true, width: 120 }, // Reduced width
+    { headerName: 'Email', field: 'email', sortable: true, filter: true, flex: 1 },
+    { headerName: 'Country', field: 'country', sortable: true, filter: true, flex: 1 },
+    { headerName: 'Phone Number', field: 'phoneNumber', sortable: true, filter: true, flex: 1 },
     {
       headerName: 'Actions',
       field: 'actions',
@@ -199,10 +201,14 @@ const UserList = () => {
           pagination={true}
           paginationPageSize={10}
           paginationPageSizeSelector={[10, 20, 50, 100]}
-          rowSelection="multiple" // Allow multiple row selection
+          rowSelection="multiple"
           domLayout="autoHeight"
           onGridReady={(params) => gridApi.current = params.api}
           gridOptions={gridOptions} // Pass gridOptions for row selection
+          suppressHorizontalScroll={true} // Disable unnecessary horizontal scrolling
+          enableColResize={true} // Allow column resizing
+          resizable={true} // Make columns resizable
+          sizeColumnsToFit={true} // Automatically adjust column width
         />
       </div>
     </div>

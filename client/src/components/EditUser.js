@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import '../static/css/styles.css'; // Assuming you have styles.css for the styling
 
 const EditUser = () => {
   const { userId } = useParams(); // Extract userId from URL parameters
@@ -113,7 +114,6 @@ const EditUser = () => {
     }));
   };
 
-  
   // Function to delete the user
   const handleDelete = async () => {
     if (window.confirm('Are you sure you want to delete this user?')) {
@@ -134,14 +134,7 @@ const EditUser = () => {
         <h2>Edit User</h2>
         <button 
           onClick={handleDelete} 
-          style={{
-            cursor: 'pointer',
-            color: 'white',
-            backgroundColor: '#dc3545', // Bootstrap red for delete action
-            border: 'none',
-            padding: '10px 15px',
-            borderRadius: '5px',
-          }}
+          className="delete-btn"
         >
           Delete User
         </button>
@@ -258,20 +251,13 @@ const EditUser = () => {
           />
         </div>
         <div style={{ display: 'flex', justifyContent: 'flex-start', gap: '10px', marginTop: '20px' }}>
-          <button type="submit" style={{ padding: '10px 20px', borderRadius: '5px' }}>Update User</button>
-          {/* Back Home Button */}
+          <button type="submit" className="action-btn">Update User</button>
           <button
             onClick={(e) => {
               e.preventDefault(); // Prevent any default action in case it's needed.
-              navigate('/'); }}
-            style={{
-              padding: '10px 20px',
-              borderRadius: '5px',
-              cursor: 'pointer',
-              color: 'white',
-              backgroundColor: '#007bff',
-              border: 'none',
+              navigate('/');
             }}
+            className="go-back-btn"
           >
             Back Home
           </button>

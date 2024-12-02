@@ -74,10 +74,17 @@ const bulkDeleteUsers = async (req, res) => {
   }
 
   try {
-    // Validate the format of IDs (ensure they are ObjectIds)
-    const objectIds = ids.map(id => mongoose.Types.ObjectId(id));
-    await User.deleteMany({ _id: { $in: objectIds } });
-    res.status(200).json({ message: `${ids.length} user(s) deleted successfully` });
+    const objectIds = ids.map(id => mongoose.Types.ObjectId.isValid(id) ? mongoose.Types.ObjectId(id) : null).filter(id => id !== null);
+    if (objectIds.length === 0) {
+      return res.status(400).json({ message: 'Invalid IDs provided' });
+    }
+    const result = await User.deleteMany({ _id: { $in: objectIds } });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: 'No users found for deletion' });
+    }
+
+    res.status(200).json({ message: `${result.deletedCount} user(s) deleted successfully` });
   } catch (err) {
     console.error('Error deleting users:', err);
     res.status(500).json({ message: err.message });

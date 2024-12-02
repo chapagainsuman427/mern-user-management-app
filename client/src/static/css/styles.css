@@ -1,0 +1,318 @@
+/* General Heading Styles */
+h2 {
+    text-align: center;
+    font-size: 3em; /* Larger font size for emphasis */
+    font-family: 'Poppins', sans-serif; /* Modern and clean font */
+    font-weight: 600; /* Semi-bold for a strong visual presence */
+    color: #34495e; /* Soft dark color for a professional look */
+    margin-bottom: 20px; /* Space below the heading */
+    letter-spacing: 1px; /* Slight letter spacing for elegance */
+    text-transform: capitalize; /* Capitalize each word for better readability */
+    position: relative;
+    padding-bottom: 10px; /* Padding for clean separation */
+    background-color: #f5f5f5; /* Light background */
+    border-radius: 10px; /* Rounded corners for a modern feel */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+  }
+  
+  /* Add underline effect */
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 50%;
+    height: 4px;
+    background-color: #3498db; /* Blue underline for contrast */
+    border-radius: 2px;
+    transform: translateX(-50%);
+    transition: all 0.3s ease;
+  }
+  
+  /* Hover effect to change color and underline width */
+  h2:hover {
+    color: #3498db; /* Change text color on hover */
+  }
+  
+  h2:hover::after {
+    width: 100%; /* Expand underline on hover */
+  }
+  
+  /* Specific Page Heading Styles */
+  h2.user-list-heading {
+    background-color: #f39c12; /* Yellow-orange for User List */
+    color: white; /* White text for contrast */
+  }
+  
+  h2.add-user-heading {
+    background-color: #27ae60; /* Green for Add User */
+    color: white;
+  }
+  
+  h2.update-user-heading {
+    background-color: #2980b9; /* Blue for Update User */
+    color: white;
+  }
+  
+  /* Additional Effect for Headings on Hover */
+  h2.page-heading:hover {
+    transform: translateY(-5px); /* Slight upward movement */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15); /* Deeper shadow */
+  }
+  
+  
+  /* Error message styling */
+  p {
+    color: red;
+  }
+  
+  /* Search container and input styling */
+  .search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .search-container input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 300px;
+    margin-right: 20px;
+  }
+  
+  /* Button styling for bulk delete */
+  button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    display: inline-block;
+  }
+  
+  /* Bulk Delete button */
+  .search-container button {
+    background-color: red;
+    color: white;
+    border: none;
+  }
+  
+  /* Form Styling */
+  form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Styling for Form Fields */
+  form input,
+  form textarea,
+  form select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #fff;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  /* Focus State for Form Fields */
+  form input:focus,
+  form textarea:focus,
+  form select:focus {
+    border-color: #007bff; /* Blue border on focus */
+    outline: none;
+  }
+  
+  /* Label Styling */
+  form label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  /* Error Message Styling */
+  form p {
+    font-size: 12px;
+    color: red;
+    margin-top: 5px;
+  }
+  
+  /* Styling for Textarea (for Notes) */
+  form textarea {
+    min-height: 120px;
+    resize: vertical; /* Allows resizing vertically */
+  }
+  
+  /* Button Styling (Submit and Back) */
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Update Button */
+  button[type="submit"] {
+    background-color: #28a745; /* Green color */
+    color: white;
+  }
+  
+  /* Update Button Hover Effect */
+  button[type="submit"]:hover {
+    background-color: #218838;
+  }
+  
+  /* Go Back Button */
+  button.go-back-btn {
+    background-color: #007bff; /* Blue color */
+    color: white;
+  }
+  
+  /* Go Back Button Hover Effect */
+  button.go-back-btn:hover {
+    background-color: #0069d9;
+  }
+  
+  /* Delete Button Styling */
+  button[type="button"] {
+    background-color: #dc3545; /* Red color */
+    color: white;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  /* Delete Button Hover Effect */
+  button[type="button"]:hover {
+    background-color: #c82333;
+  }
+  
+  /* Input Containers for Better Alignment */
+  form div {
+    margin-bottom: 15px;
+  }
+  
+  /* General Button Styles */
+  .action-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .action-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .go-back-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .go-back-btn:hover {
+    background-color: #da190b;
+  }
+  
+  .delete-btn {
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .delete-btn:hover {
+    background-color: #e60073;
+  }
+  
+  /* Ensuring grid columns fit the content */
+  .ag-theme-alpine .ag-center-cols-container {
+    overflow-x: auto; /* Allows scroll only if needed */
+  }
+  
+  /* Edit and Delete buttons inside the grid */
+  .ag-theme-alpine .ag-center-cols-container .ag-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .ag-theme-alpine .ag-center-cols-container .ag-cell button,
+  .ag-theme-alpine .ag-center-cols-container .ag-cell a {
+    font-size: 1em;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-right: 10px; /* Add margin for spacing */
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    display: inline-block;
+  }
+  
+  /* Edit button styling */
+  .ag-theme-alpine .ag-center-cols-container .ag-cell a {
+    background-color: blue;
+  }
+  
+  /* Delete button styling */
+  .ag-theme-alpine .ag-center-cols-container .ag-cell button {
+    background-color: red;
+    border: none;
+  }
+  
+  /* Hover effect for Edit and Delete buttons */
+  .ag-theme-alpine .ag-center-cols-container .ag-cell a:hover,
+  .ag-theme-alpine .ag-center-cols-container .ag-cell button:hover {
+    opacity: 0.9;
+  }
+  
+  /* Ensure Edit and Delete buttons are the same size */
+  .ag-theme-alpine .ag-center-cols-container .ag-cell button,
+  .ag-theme-alpine .ag-center-cols-container .ag-cell a {
+    min-width: 80px;
+    text-align: center;
+  }
+  
+  /* Make columns more responsive */
+  .ag-theme-alpine .ag-header-cell {
+    text-align: center;
+  }
+  
+  .ag-theme-alpine .ag-body-container {
+    width: 100%;
+    overflow-x: auto; /* Enables horizontal scroll only if necessary */
+  }
+  
+  /* Ag-Grid container styling */
+  .ag-theme-alpine {
+    height: 500px;
+    width: 100%; /* Ensure the grid width is 100% of its container */
+    overflow-x: hidden; /* Add horizontal scroll only if needed */
+  }
+  
