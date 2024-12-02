@@ -19,6 +19,7 @@ const EditUser = () => {
   });
   const [error, setError] = useState('');
   const [formErrors, setFormErrors] = useState({});
+  const [isUpdated, setIsUpdated] = useState(false); // Track whether the update was successful
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -93,6 +94,7 @@ const EditUser = () => {
         updatedUser
       );
       console.log('User updated:', response.data);
+      setIsUpdated(true); // Mark the user as updated
 
       alert('User updated successfully!');
       navigate('/'); // Redirect to homepage or user list after successful update
@@ -111,10 +113,42 @@ const EditUser = () => {
     }));
   };
 
+  
+  // Function to delete the user
+  const handleDelete = async () => {
+    if (window.confirm('Are you sure you want to delete this user?')) {
+      try {
+        await axios.delete(`http://localhost:5000/api/users/${userId}`);
+        alert('User deleted successfully!');
+        navigate('/'); // Redirect to homepage after deletion
+      } catch (err) {
+        console.error('Error deleting user:', err);
+        alert('Error deleting user! Please try again.');
+      }
+    }
+  };
+
   return (
     <div>
-      <h2>Edit User</h2>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <h2>Edit User</h2>
+        <button 
+          onClick={handleDelete} 
+          style={{
+            cursor: 'pointer',
+            color: 'white',
+            backgroundColor: '#dc3545', // Bootstrap red for delete action
+            border: 'none',
+            padding: '10px 15px',
+            borderRadius: '5px',
+          }}
+        >
+          Delete User
+        </button>
+      </div>
+      
       {error && <p style={{ color: 'red' }}>{error}</p>}
+      
       <form onSubmit={handleSubmit}>
         <div>
           <label>First Name:</label>
@@ -223,7 +257,25 @@ const EditUser = () => {
             onChange={handleInputChange}
           />
         </div>
-        <button type="submit">Update User</button>
+        <div style={{ display: 'flex', justifyContent: 'flex-start', gap: '10px', marginTop: '20px' }}>
+          <button type="submit" style={{ padding: '10px 20px', borderRadius: '5px' }}>Update User</button>
+          {/* Back Home Button */}
+          <button
+            onClick={(e) => {
+              e.preventDefault(); // Prevent any default action in case it's needed.
+              navigate('/'); }}
+            style={{
+              padding: '10px 20px',
+              borderRadius: '5px',
+              cursor: 'pointer',
+              color: 'white',
+              backgroundColor: '#007bff',
+              border: 'none',
+            }}
+          >
+            Back Home
+          </button>
+        </div>
       </form>
     </div>
   );

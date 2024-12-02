@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
     <nav style={styles.navbar}>
-      <h1 style={styles.title}>User Management</h1>
+        <Link to="/" style={styles.title}>
+        User Management Application
+      </Link>
       <div>
         <Link to="/add" style={styles.button}>
           Add User
@@ -24,6 +26,8 @@ const styles = {
     color: 'white',
   },
   title: {
+    color: 'white',
+    padding: '10px 15px',
     margin: 0,
   },
   button: {

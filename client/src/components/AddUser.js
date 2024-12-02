@@ -187,7 +187,23 @@ const AddUser = () => {
             onChange={handleInputChange}
           />
         </div>
-        <button type="submit">Add User</button>
+        <div style={{ display: 'flex', justifyContent: 'flex-start', gap: '10px', marginTop: '20px' }}>
+          <button type="submit" style={{ padding: '10px 20px', borderRadius: '5px' }}>Add User</button>
+          {/* Back Home Button */}
+          <button 
+            onClick={() => navigate('/')} 
+            style={{
+              padding: '10px 20px',
+              borderRadius: '5px',
+              cursor: 'pointer',
+              color: 'white',
+              backgroundColor: '#007bff',
+              border: 'none',
+            }}
+          >
+            Back Home
+          </button>
+        </div>
       </form>
     </div>
   );

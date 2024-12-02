@@ -1,0 +1,84 @@
+/* styles.css */
+
+/* General user list container styling */
+.user-list {
+    padding: 20px;
+  }
+  
+  /* Table styles */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th,
+  .table td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .table th {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+  }
+  
+  .table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Light gray for even rows */
+  }
+  
+  .table tr:hover {
+    background-color: #e9ecef; /* Light hover effect */
+  }
+  
+  /* Search container and styling */
+  .search-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  /* Style the input field */
+  .search-bar {
+    width: 300px; /* Make the search bar compact */
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  
+  /* Focus effect for the search bar */
+  .search-bar:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 8px rgba(72, 215, 141, 0.4);
+  }
+  
+  /* Bulk delete button styling */
+  button {
+    cursor: pointer;
+    color: white;
+    background-color: red;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Hover effect for the button */
+  button:hover {
+    background-color: darkred;
+  }
+  
+  /* Add spacing for table actions */
+  .ag-theme-alpine {
+    margin-top: 20px;
+  }
+  
+  /* Additional styling to ensure table's height and padding look good */
+  .ag-grid {
+    height: 500px;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
