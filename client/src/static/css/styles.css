@@ -62,6 +62,27 @@ h2 {
   }
   
   
+  /* Navbar Styling */
+.custom-navbar {
+    background-color: #7f8c8d; /* Grey background */
+  }
+  
+  /* Add User Button Styling */
+  .custom-add-user-button {
+    background-color: #27ae60 !important; /* Green background */
+    border-color: #27ae60 !important;
+  }
+  
+  /* Optional: Style navbar items to match your theme */
+  .navbar-nav .nav-link {
+    color: white !important; /* White text for the navbar items */
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #ecf0f1 !important; /* Light hover effect for nav items */
+  }
+
+  
   /* Error message styling */
   p {
     color: red;

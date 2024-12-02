@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'evergreen-ui'; // Import Evergreen UI Button
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import '../static/css/styles.css'; // Assuming you have styles.css for the styling
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav className="navbar navbar-expand-lg navbar-dark custom-navbar">
       <div className="container-fluid">
         {/* Link to Home */}
         <Link className="navbar-brand" to="/">
@@ -31,7 +32,7 @@ const Navbar = () => {
             <li className="nav-item">
               {/* Evergreen UI Button wrapped inside Link for routing */}
               <Link to="/add" className="nav-link">
-                <Button appearance="primary" intent="success" padding={8} marginLeft={8}>
+                <Button className="custom-add-user-button" appearance="primary" intent="success" padding={8} marginLeft={8}>
                   Add User
                 </Button>
               </Link>
