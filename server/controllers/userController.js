@@ -1,4 +1,4 @@
-const User = require('../model/User.js');
+const User = require('../models/user');
 const mongoose = require('mongoose');
 
 // Get all users
@@ -7,88 +7,77 @@ const getUsers = async (req, res) => {
     const users = await User.find();
     res.status(200).json(users);
   } catch (err) {
-    console.error('Error getting users:', err);
-    res.status(500).json({ message: err.message });
+    console.error('Error fetching users:', err);
+    res.status(500).json({ error: 'Error fetching users', details: err.message });
   }
 };
 
 // Get a user by ID
 const getUserById = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: 'Invalid ObjectId format' });
     }
-    res.status(200).json(user); // return the user data
+
+    const user = await User.findById(id);
+    if (!user) return res.status(404).json({ error: 'User not found' });
+
+    res.status(200).json(user);
   } catch (err) {
-    console.error('Error in getUserById:', err);
-    res.status(500).json({ message: 'Server error', error: err.message });
+    console.error('Error retrieving user:', err);
+    res.status(500).json({ error: 'Error retrieving user', details: err.message });
   }
 };
 
 // Create a new user
 const createUser = async (req, res) => {
-  const newUser = new User(req.body);
   try {
+    const newUser = new User(req.body);
     const savedUser = await newUser.save();
     res.status(201).json(savedUser);
   } catch (err) {
     console.error('Error creating user:', err);
-    res.status(400).json({ message: err.message });
+    res.status(400).json({ error: 'Error creating user', details: err.message });
   }
 };
 
-// Update a user
+// Update a user by ID
 const updateUser = async (req, res) => {
   try {
-    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!updatedUser) {
-      return res.status(404).json({ message: "User not found" });
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: 'Invalid ObjectId format' });
     }
+
+    const updatedUser = await User.findByIdAndUpdate(id, req.body, { new: true });
+    if (!updatedUser) return res.status(404).json({ error: 'User not found' });
+
     res.status(200).json(updatedUser);
   } catch (err) {
     console.error('Error updating user:', err);
-    res.status(400).json({ message: err.message });
+    res.status(400).json({ error: 'Error updating user', details: err.message });
   }
 };
 
-// Delete a user
+// Delete a user by ID
 const deleteUser = async (req, res) => {
   try {
-    const deletedUser = await User.findByIdAndDelete(req.params.id);
-    if (!deletedUser) {
-      return res.status(404).json({ message: "User not found" });
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: 'Invalid ObjectId format' });
     }
-    res.status(200).json({ message: "User deleted successfully" });
+
+    const deletedUser = await User.findByIdAndDelete(id);
+    if (!deletedUser) return res.status(404).json({ error: 'User not found' });
+
+    res.status(200).json({ message: 'User deleted successfully' });
   } catch (err) {
     console.error('Error deleting user:', err);
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ error: 'Error deleting user', details: err.message });
   }
 };
+  
 
-// Bulk delete users
-const bulkDeleteUsers = async (req, res) => {
-  const { ids } = req.body;
-  if (!Array.isArray(ids) || ids.length === 0) {
-    return res.status(400).json({ message: 'Invalid or empty IDs array' });
-  }
 
-  try {
-    const objectIds = ids.map(id => mongoose.Types.ObjectId.isValid(id) ? mongoose.Types.ObjectId(id) : null).filter(id => id !== null);
-    if (objectIds.length === 0) {
-      return res.status(400).json({ message: 'Invalid IDs provided' });
-    }
-    const result = await User.deleteMany({ _id: { $in: objectIds } });
-
-    if (result.deletedCount === 0) {
-      return res.status(404).json({ message: 'No users found for deletion' });
-    }
-
-    res.status(200).json({ message: `${result.deletedCount} user(s) deleted successfully` });
-  } catch (err) {
-    console.error('Error deleting users:', err);
-    res.status(500).json({ message: err.message });
-  }
-};
-
-module.exports = { getUsers, getUserById, createUser, updateUser, deleteUser, bulkDeleteUsers };
+  module.exports = { getUsers, getUserById, createUser, updateUser, deleteUser};

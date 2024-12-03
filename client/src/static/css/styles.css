@@ -337,3 +337,58 @@ h2 {
     overflow-x: hidden; /* Add horizontal scroll only if needed */
   }
   
+
+  /* Error Text */
+.error-text {
+  color: red;
+  text-align: center;
+}
+
+/* No Users Found Text */
+.no-users-text {
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Search Container */
+.search-container {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.search-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 300px;
+}
+
+/* Grid Container */
+.grid-container {
+  height: 500px;
+  width: 100%;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+}
+
+.edit-button {
+  text-decoration: none;
+  color: white;
+  background-color: blue;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.delete-button {
+  cursor: pointer;
+  color: white;
+  background-color: red;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
