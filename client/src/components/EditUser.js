@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import '../static/css/styles.css'; // Assuming you have styles.css for the styling
+import '../static/css/styles.css'; 
 
 // Edit User component
 const EditUser = () => {
   // Extracting userId from URL parameters
-  const { userId } = useParams(); // Extract userId from URL parameters
+  const { userId } = useParams(); 
   // State to hold the user data
   const [user, setUser] = useState({
     firstName: '',
