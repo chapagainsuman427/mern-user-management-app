@@ -7,15 +7,18 @@ import 'ag-grid-community/styles/ag-theme-alpine.css';
 import '../static/css/styles.css';
 
 const UserList = () => {
+  // Declaring state variables
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [error, setError] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const gridApi = React.useRef(null);
 
+  // useEffect hook to fetch the list of users
   useEffect(() => {
     const fetchUsers = async () => {
       try {
+        // Sending GET request to fetch user data from the API
         const res = await axios.get('http://localhost:5000/api/users');
         setUsers(res.data);
         setFilteredUsers(res.data);
@@ -26,6 +29,7 @@ const UserList = () => {
     fetchUsers();
   }, []);
 
+  // handleDelete function to delete a user as per ID
   const handleDelete = async (id) => {
     if (isDeleting) return;
     setIsDeleting(true);
@@ -42,6 +46,7 @@ const UserList = () => {
     }
   };
 
+  // Column definitions for the Ag-Grid component
   const columnDefs = [
     { headerName: 'First Name', field: 'firstName', sortable: true, filter: true, width: 120 },
     { headerName: 'Last Name', field: 'lastName', sortable: true, filter: true, width: 120 },
@@ -60,8 +65,10 @@ const UserList = () => {
     },
   ];
 
+// handleSearch function to filter users based on search input
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
+     // Filtering users 
     setFilteredUsers(
       users.filter((user) =>
         Object.values(user).some((value) =>
@@ -77,7 +84,8 @@ const UserList = () => {
       {error && <p className="error-text">{error}</p>}
       {users.length === 0 && <p className="no-users-text">No users found!</p>}
       <div className="search-container">
-        <input type="text" placeholder="Search Users..." onChange={handleSearch} className="search-input" />
+      {/* Search input field for filtering users */}
+      <input type="text" placeholder="Search Users..." onChange={handleSearch} className="search-input" />
       </div>
       <div className="ag-theme-alpine grid-container">
         <AgGridReact

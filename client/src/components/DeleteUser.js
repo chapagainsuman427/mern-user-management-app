@@ -1,3 +1,4 @@
+// Importing necessary dependencies
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -5,6 +6,7 @@ import axios from 'axios';
 const DeleteUser = ({ userId }) => {
   const navigate = useNavigate();
 
+  // handleDelete function makes an HTTP DELETE request to delete the user by userId
   const handleDelete = async () => {
     try {
       const response = await axios.delete(`http://localhost:5000/api/users/${userId}`);
@@ -14,6 +16,7 @@ const DeleteUser = ({ userId }) => {
       alert('User deleted successfully!');
       navigate('/'); // Redirect to homepage or user list after successful delete
     } catch (err) {
+      // Logging the error and showing an alert if the deletion fails
       console.error('Error deleting user:', err);
       alert('Error deleting user! Please try again.');
     }

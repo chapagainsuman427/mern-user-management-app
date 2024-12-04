@@ -7,7 +7,7 @@ const {
   updateUser,
   deleteUser,
   bulkDeleteUsers
-} = require('../controllers/userController'); // Ensure the path is correct
+} = require('../controllers/userController');
 
 // Get all users
 router.get('/', getUsers);

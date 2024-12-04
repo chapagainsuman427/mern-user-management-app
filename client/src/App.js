@@ -7,9 +7,10 @@ import DeleteUser from './components/DeleteUser';
 import Navbar from './components/Navbar'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
+// Functional component of main application
 const App = () => {
   return (
+    //router to provide routing functionality
     <Router 
       future={{
         v7_startTransition: true,
@@ -18,6 +19,7 @@ const App = () => {
     >
       <div>
         <Navbar />
+        {/* Routes define the different paths for the app */}
         <Routes>
           <Route path="/" element={<UserList />} />
           <Route path="/add" element={<AddUser />} />

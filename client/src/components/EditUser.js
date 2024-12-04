@@ -3,8 +3,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../static/css/styles.css'; // Assuming you have styles.css for the styling
 
+// Edit User component
 const EditUser = () => {
+  // Extracting userId from URL parameters
   const { userId } = useParams(); // Extract userId from URL parameters
+  // State to hold the user data
   const [user, setUser] = useState({
     firstName: '',
     lastName: '',
@@ -20,9 +23,9 @@ const EditUser = () => {
   });
   const [error, setError] = useState('');
   const [formErrors, setFormErrors] = useState({});
-  const [isUpdated, setIsUpdated] = useState(false); // Track whether the update was successful
   const navigate = useNavigate();
 
+// Fetch user data based on userId from the URL
   useEffect(() => {
     // Check if userId is available
     if (!userId) {
@@ -35,16 +38,18 @@ const EditUser = () => {
         const response = await axios.get(`http://localhost:5000/api/users/${userId}`);
         const userData = response.data;
 
-        // Check if userData is valid
+        // Handle case when user data is not found
         if (!userData) {
           setError('User not found');
           return;
         }
 
+        // Format date of birth to the correct format
         if (userData.dob) {
           userData.dob = new Date(userData.dob).toISOString().split('T')[0];
         }
 
+        // Update state with fetched user data
         setUser(userData);
       } catch (err) {
         setError('Error fetching user data!');
@@ -52,10 +57,11 @@ const EditUser = () => {
       }
     };
 
+    // Re-fetch user data if userId changes
     fetchUserData();
   }, [userId]);
 
-  // Validate form inputs
+// Form validation function
   const validateForm = () => {
     let errors = {};
     if (!user.firstName) errors.firstName = 'First name is required';
@@ -73,12 +79,16 @@ const EditUser = () => {
     return errors;
   };
 
+  // Handle form submission, validate and update the user
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const validationErrors = validateForm();
+    setFormErrors(validationErrors);
+
+// If there are validation errors,show errors
     if (Object.keys(validationErrors).length > 0) {
-      setFormErrors(validationErrors);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
 
@@ -90,15 +100,13 @@ const EditUser = () => {
         updatedUser.dob = new Date(updatedUser.dob).toISOString().split('T')[0];
       }
 
-      const response = await axios.put(
+      await axios.put(
         `http://localhost:5000/api/users/${userId}`,
         updatedUser
       );
-      console.log('User updated:', response.data);
-      setIsUpdated(true); // Mark the user as updated
 
       alert('User updated successfully!');
-      navigate('/'); // Redirect to homepage or user list after successful update
+      navigate('/'); 
     } catch (err) {
       console.error('Error updating user:', err);
       setError('Error updating user!');
@@ -106,6 +114,7 @@ const EditUser = () => {
     }
   };
 
+  // Handle input changes and update user state
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUser((prevUser) => ({
@@ -114,13 +123,14 @@ const EditUser = () => {
     }));
   };
 
-  // Function to delete the user
+  
+  // Handle user deletion
   const handleDelete = async () => {
     if (window.confirm('Are you sure you want to delete this user?')) {
       try {
         await axios.delete(`http://localhost:5000/api/users/${userId}`);
         alert('User deleted successfully!');
-        navigate('/'); // Redirect to homepage after deletion
+        navigate('/');
       } catch (err) {
         console.error('Error deleting user:', err);
         alert('Error deleting user! Please try again.');
@@ -129,16 +139,18 @@ const EditUser = () => {
   };
 
   return (
-    <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <div className='edit-user'>
+      <div>
         <h2>Edit User</h2>
+        </div>
+        <div className="button-container">
         <button 
           onClick={handleDelete} 
-          className="delete-btn"
+          className='delete-button'
         >
           Delete User
         </button>
-      </div>
+        </div>
       
       {error && <p style={{ color: 'red' }}>{error}</p>}
       
@@ -150,7 +162,6 @@ const EditUser = () => {
             name="firstName"
             value={user.firstName}
             onChange={handleInputChange}
-            required
           />
           {formErrors.firstName && <p style={{ color: 'red' }}>{formErrors.firstName}</p>}
         </div>
@@ -161,7 +172,6 @@ const EditUser = () => {
             name="lastName"
             value={user.lastName}
             onChange={handleInputChange}
-            required
           />
           {formErrors.lastName && <p style={{ color: 'red' }}>{formErrors.lastName}</p>}
         </div>
@@ -172,7 +182,6 @@ const EditUser = () => {
             name="dob"
             value={user.dob}
             onChange={handleInputChange}
-            required
           />
           {formErrors.dob && <p style={{ color: 'red' }}>{formErrors.dob}</p>}
         </div>
@@ -183,7 +192,6 @@ const EditUser = () => {
             name="address1"
             value={user.address1}
             onChange={handleInputChange}
-            required
           />
           {formErrors.address1 && <p style={{ color: 'red' }}>{formErrors.address1}</p>}
         </div>
@@ -194,7 +202,6 @@ const EditUser = () => {
             name="city"
             value={user.city}
             onChange={handleInputChange}
-            required
           />
           {formErrors.city && <p style={{ color: 'red' }}>{formErrors.city}</p>}
         </div>
@@ -205,7 +212,6 @@ const EditUser = () => {
             name="postalCode"
             value={user.postalCode}
             onChange={handleInputChange}
-            required
           />
           {formErrors.postalCode && <p style={{ color: 'red' }}>{formErrors.postalCode}</p>}
         </div>
@@ -216,7 +222,6 @@ const EditUser = () => {
             name="country"
             value={user.country}
             onChange={handleInputChange}
-            required
           />
           {formErrors.country && <p style={{ color: 'red' }}>{formErrors.country}</p>}
         </div>
@@ -227,7 +232,6 @@ const EditUser = () => {
             name="phoneNumber"
             value={user.phoneNumber}
             onChange={handleInputChange}
-            required
           />
           {formErrors.phoneNumber && <p style={{ color: 'red' }}>{formErrors.phoneNumber}</p>}
         </div>
@@ -238,7 +242,6 @@ const EditUser = () => {
             name="email"
             value={user.email}
             onChange={handleInputChange}
-            required
           />
           {formErrors.email && <p style={{ color: 'red' }}>{formErrors.email}</p>}
         </div>
@@ -251,13 +254,12 @@ const EditUser = () => {
           />
         </div>
         <div style={{ display: 'flex', justifyContent: 'flex-start', gap: '10px', marginTop: '20px' }}>
-          <button type="submit" className="action-btn">Update User</button>
+        <button type="submit" className='button'>Update User</button>
           <button
             onClick={(e) => {
-              e.preventDefault(); // Prevent any default action in case it's needed.
-              navigate('/');
-            }}
-            className="go-back-btn"
+              e.preventDefault(); 
+              navigate('/'); }}
+            className='button back-home-button'
           >
             Back Home
           </button>

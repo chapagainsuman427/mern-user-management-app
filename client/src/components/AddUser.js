@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import '../static/css/styles.css'; // Assuming you have styles.css for the styling
+import '../static/css/styles.css'; 
 
 const AddUser = () => {
+  // Initial state for the user form
   const [user, setUser] = useState({
     firstName: '',
     lastName: '',
@@ -17,64 +18,71 @@ const AddUser = () => {
     email: '',
     userNotes: '',
   });
-  const [error, setError] = useState('');
+
+  // State to store form validation errors
   const [formErrors, setFormErrors] = useState({});
+
+  // useNavigate hook for navigating after form submission
   const navigate = useNavigate();
 
-  // Validate form inputs
+  // Function to validate the form fields
   const validateForm = () => {
     let errors = {};
-    if (!user.firstName) errors.firstName = 'First name is required';
-    if (!user.lastName) errors.lastName = 'Last name is required';
-    if (!user.dob) errors.dob = 'Date of birth is required';
-    if (!user.address1) errors.address1 = 'Address Line 1 is required';
-    if (!user.city) errors.city = 'City is required';
-    if (!user.postalCode) errors.postalCode = 'Postal code is required';
-    if (!user.country) errors.country = 'Country is required';
-    if (!user.phoneNumber) errors.phoneNumber = 'Phone number is required';
-    if (!/^[\d\s()+-]+$/.test(user.phoneNumber)) errors.phoneNumber = 'Phone number is invalid';
-    if (!user.email) errors.email = 'Email is required';
-    if (!/\S+@\S+\.\S+/.test(user.email)) errors.email = 'Email is invalid';
-
+      // Check for empty fields 
+    if (!user.firstName.trim()) errors.firstName = 'First name is required.';
+    if (!user.lastName.trim()) errors.lastName = 'Last name is required.';
+    if (!user.dob) errors.dob = 'Date of birth is required.';
+    if (!user.address1.trim()) errors.address1 = 'Address Line 1 is required.';
+    if (!user.city.trim()) errors.city = 'City is required.';
+    if (!user.postalCode.trim()) errors.postalCode = 'Postal code is required.';
+    if (!user.country.trim()) errors.country = 'Country is required.';
+    if (!user.phoneNumber.trim()) errors.phoneNumber = 'Phone number is required.';
+    if (user.phoneNumber && !/^[\d\s()+-]+$/.test(user.phoneNumber)) {
+      errors.phoneNumber = 'Phone number is invalid.';
+    }
+    if (!user.email.trim()) errors.email = 'Email is required.';
+    if (user.email && !/\S+@\S+\.\S+/.test(user.email)) {
+      errors.email = 'Email is invalid.';
+    }
     return errors;
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const validationErrors = validateForm();
-    setFormErrors(validationErrors); // Set validation errors
-  
-    // If there are validation errors, do not proceed with the submission
+    setFormErrors(validationErrors); 
+
+    // If there are validation errors, stop form submission and show errors
     if (Object.keys(validationErrors).length > 0) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
   
 
+    // Create a new user object from form data
     try {
       const newUser = { ...user };
 
-      // Ensure dob is in the correct format
+      // Format date of birth to ISO string
       if (newUser.dob) {
         newUser.dob = new Date(newUser.dob).toISOString().split('T')[0];
       }
-
-      const response = await axios.post('http://localhost:5000/api/users', newUser);
-      console.log('User added:', response.data);
-
+      // Send POST request to create the user
+      await axios.post('http://localhost:5000/api/users', newUser);
       alert('User added successfully!');
-      navigate('/'); // Redirect to homepage or user list after successful add
+      navigate('/'); 
     } catch (err) {
-      console.error('Error adding user:', err);
-      setError('Error adding user!');
       alert('Error adding user! Please try again.');
     }
   };
 
+  // Handle input changes and update the user state
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUser((prevUser) => ({
       ...prevUser,
+      // Update corresponding field in the user state
       [name]: value,
     }));
   };
@@ -82,7 +90,6 @@ const AddUser = () => {
   return (
     <div className="form-container">
       <h2 className="form-title">Add New User</h2>
-      {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>First Name:</label>
@@ -91,7 +98,6 @@ const AddUser = () => {
             name="firstName"
             value={user.firstName}
             onChange={handleInputChange}
-            required
           />
           {formErrors.firstName && <p className="error">{formErrors.firstName}</p>}
         </div>
@@ -102,7 +108,6 @@ const AddUser = () => {
             name="lastName"
             value={user.lastName}
             onChange={handleInputChange}
-            required
           />
           {formErrors.lastName && <p className="error">{formErrors.lastName}</p>}
         </div>
@@ -113,7 +118,6 @@ const AddUser = () => {
             name="dob"
             value={user.dob}
             onChange={handleInputChange}
-            required
           />
           {formErrors.dob && <p className="error">{formErrors.dob}</p>}
         </div>
@@ -124,7 +128,6 @@ const AddUser = () => {
             name="address1"
             value={user.address1}
             onChange={handleInputChange}
-            required
           />
           {formErrors.address1 && <p className="error">{formErrors.address1}</p>}
         </div>
@@ -144,7 +147,6 @@ const AddUser = () => {
             name="city"
             value={user.city}
             onChange={handleInputChange}
-            required
           />
           {formErrors.city && <p className="error">{formErrors.city}</p>}
         </div>
@@ -155,7 +157,6 @@ const AddUser = () => {
             name="postalCode"
             value={user.postalCode}
             onChange={handleInputChange}
-            required
           />
           {formErrors.postalCode && <p className="error">{formErrors.postalCode}</p>}
         </div>
@@ -166,7 +167,6 @@ const AddUser = () => {
             name="country"
             value={user.country}
             onChange={handleInputChange}
-            required
           />
           {formErrors.country && <p className="error">{formErrors.country}</p>}
         </div>
@@ -177,7 +177,6 @@ const AddUser = () => {
             name="phoneNumber"
             value={user.phoneNumber}
             onChange={handleInputChange}
-            required
           />
           {formErrors.phoneNumber && <p className="error">{formErrors.phoneNumber}</p>}
         </div>
@@ -188,7 +187,6 @@ const AddUser = () => {
             name="email"
             value={user.email}
             onChange={handleInputChange}
-            required
           />
           {formErrors.email && <p className="error">{formErrors.email}</p>}
         </div>

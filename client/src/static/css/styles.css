@@ -1,139 +1,157 @@
-/* General Heading Styles */
+/* ================================
+    General Heading Styles
+================================= */
+
+/* Main heading style */
 h2 {
     text-align: center;
-    font-size: 3em; /* Larger font size for emphasis */
-    font-family: 'Poppins', sans-serif; /* Modern and clean font */
-    font-weight: 600; /* Semi-bold for a strong visual presence */
-    color: #34495e; /* Soft dark color for a professional look */
-    margin-bottom: 20px; /* Space below the heading */
-    letter-spacing: 1px; /* Slight letter spacing for elegance */
-    text-transform: capitalize; /* Capitalize each word for better readability */
+    font-size: 3em; 
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600; 
+    color: #34495e;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-transform: capitalize;
     position: relative;
-    padding-bottom: 10px; /* Padding for clean separation */
-    background-color: #f5f5f5; /* Light background */
-    border-radius: 10px; /* Rounded corners for a modern feel */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-    transition: all 0.3s ease; /* Smooth transition for hover effects */
-  }
-  
-  /* Add underline effect */
-  h2::after {
+    padding-bottom: 10px;
+    background-color: #f5f5f5; 
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); 
+    transition: all 0.3s ease;
+}
+
+/* Underline effect on heading */
+h2::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 50%;
     width: 50%;
     height: 4px;
-    background-color: #3498db; /* Blue underline for contrast */
+    background-color: #3498db;
     border-radius: 2px;
     transform: translateX(-50%);
     transition: all 0.3s ease;
-  }
-  
-  /* Hover effect to change color and underline width */
-  h2:hover {
-    color: #3498db; /* Change text color on hover */
-  }
-  
-  h2:hover::after {
-    width: 100%; /* Expand underline on hover */
-  }
-  
-  /* Specific Page Heading Styles */
-  h2.user-list-heading {
-    background-color: #f39c12; /* Yellow-orange for User List */
-    color: white; /* White text for contrast */
-  }
-  
-  h2.add-user-heading {
-    background-color: #27ae60; /* Green for Add User */
-    color: white;
-  }
-  
-  h2.update-user-heading {
-    background-color: #2980b9; /* Blue for Update User */
-    color: white;
-  }
-  
-  /* Additional Effect for Headings on Hover */
-  h2.page-heading:hover {
-    transform: translateY(-5px); /* Slight upward movement */
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15); /* Deeper shadow */
-  }
-  
-  
-  /* Navbar Styling */
-.custom-navbar {
-    background-color: #7f8c8d; /* Grey background */
-  }
-  
-  /* Add User Button Styling */
-  .custom-add-user-button {
-    background-color: #27ae60 !important; /* Green background */
-    border-color: #27ae60 !important;
-  }
-  
-  /* Optional: Style navbar items to match your theme */
-  .navbar-nav .nav-link {
-    color: white !important; /* White text for the navbar items */
-  }
-  
-  .navbar-nav .nav-link:hover {
-    color: #ecf0f1 !important; /* Light hover effect for nav items */
-  }
+}
 
-  
-  /* Error message styling */
-  p {
-    color: red;
-  }
-  
-  /* Search container and input styling */
-  .search-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .search-container input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 300px;
-    margin-right: 20px;
-  }
-  
-  /* Button styling for bulk delete */
-  button {
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1em;
-    display: inline-block;
-  }
-  
-  /* Bulk Delete button */
-  .search-container button {
-    background-color: red;
+/* Hover effect on heading */
+h2:hover {
+    color: #3498db; 
+}
+h2:hover::after {
+    width: 100%; 
+}
+
+/* Specific Heading Styles */
+h2.user-list-heading {
+    background-color: #f39c12; 
     color: white;
+}
+h2.add-user-heading {
+    background-color: #27ae60; 
+    color: white;
+}
+h2.update-user-heading {
+    background-color: #2980b9; 
+    color: white;
+}
+
+/* Additional Heading Hover Effect */
+h2.page-heading:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15); 
+}
+
+/* ================================
+    Button Styles
+================================= */
+
+/* General button styles */
+.button {
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+/* Delete button style */
+.delete-button {
+    cursor: pointer;
+    color: white;
+    background-color: #dc3545; 
     border: none;
-  }
-  
-  /* Form Styling */
-  form {
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end; 
+}
+
+
+/* Back Home button */
+.back-home-button {
+    cursor: pointer;
+    color: white;
+    background-color: #007bff; 
+    border: none;
+}
+
+/* ================================
+    Navbar Styling
+================================= */
+
+/* Navbar container */
+.custom-navbar {
+    background-color: #7f8c8d; 
+}
+
+/* Add User Button */
+.custom-add-user-button {
+    background-color: #27ae60 !important;
+    border-color: #27ae60 !important;
+}
+
+/* Navbar links */
+.navbar-nav .nav-link {
+    color: white !important;
+}
+.navbar-nav .nav-link:hover {
+    color: #ecf0f1 !important; 
+}
+
+/* ================================
+    Error and Message Styling
+================================= */
+
+/* Error message */
+.error-text, .error {
+    color: red;
+    font-size: 0.875em;
+    text-align: center;
+}
+
+/* No Users Found message */
+.no-users-text {
+    text-align: center;
+    font-weight: bold;
+}
+
+/* ================================
+    Form Styling
+================================= */
+
+/* Form container */
+form {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #f9f9f9;
-  }
-  
-  /* Styling for Form Fields */
-  form input,
-  form textarea,
-  form select {
+}
+
+/* Form fields */
+form input, form textarea, form select {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -141,254 +159,115 @@ h2 {
     border-radius: 5px;
     font-size: 14px;
     background-color: #fff;
-    box-sizing: border-box;
     transition: border-color 0.3s ease;
-  }
-  
-  /* Focus State for Form Fields */
-  form input:focus,
-  form textarea:focus,
-  form select:focus {
-    border-color: #007bff; /* Blue border on focus */
+}
+
+/* Focus state for form fields */
+form input:focus, form textarea:focus, form select:focus {
+    border-color: #007bff;
     outline: none;
-  }
-  
-  /* Label Styling */
-  form label {
+}
+
+/* Label styling */
+form label {
     font-size: 16px;
     font-weight: 600;
     color: #333;
-    display: block;
     margin-bottom: 5px;
-  }
-  
-  /* Error Message Styling */
-  form p {
-    font-size: 12px;
-    color: red;
-    margin-top: 5px;
-  }
-  
-  /* Styling for Textarea (for Notes) */
-  form textarea {
-    min-height: 120px;
-    resize: vertical; /* Allows resizing vertically */
-  }
-  
-  /* Button Styling (Submit and Back) */
-  button {
+}
+
+/* Button styling inside form */
+button {
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  /* Update Button */
-  button[type="submit"] {
-    background-color: #28a745; /* Green color */
+}
+
+/* Update button */
+button[type="submit"] {
+    background-color: #28a745;
     color: white;
-  }
-  
-  /* Update Button Hover Effect */
-  button[type="submit"]:hover {
+}
+button[type="submit"]:hover {
     background-color: #218838;
-  }
-  
-  /* Go Back Button */
-  button.go-back-btn {
-    background-color: #007bff; /* Blue color */
+}
+
+/* Go Back button */
+button.go-back-btn {
+    background-color: #007bff;
     color: white;
-  }
-  
-  /* Go Back Button Hover Effect */
-  button.go-back-btn:hover {
+}
+button.go-back-btn:hover {
     background-color: #0069d9;
-  }
-  
-  /* Delete Button Styling */
-  button[type="button"] {
-    background-color: #dc3545; /* Red color */
+}
+
+/* Delete button */
+button[type="button"] {
+    background-color: #dc3545;
     color: white;
-    font-size: 14px;
-    padding: 8px 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-  }
-  
-  /* Delete Button Hover Effect */
-  button[type="button"]:hover {
+}
+button[type="button"]:hover {
     background-color: #c82333;
-  }
-  
-  /* Input Containers for Better Alignment */
-  form div {
-    margin-bottom: 15px;
-  }
-  
-  /* General Button Styles */
-  .action-btn {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .action-btn:hover {
-    background-color: #45a049;
-  }
-  
-  .go-back-btn {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .go-back-btn:hover {
-    background-color: #da190b;
-  }
-  
-  .delete-btn {
-    background-color: #ff4081;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .delete-btn:hover {
-    background-color: #e60073;
-  }
-  
-  /* Ensuring grid columns fit the content */
-  .ag-theme-alpine .ag-center-cols-container {
-    overflow-x: auto; /* Allows scroll only if needed */
-  }
-  
-  /* Edit and Delete buttons inside the grid */
-  .ag-theme-alpine .ag-center-cols-container .ag-cell {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .ag-theme-alpine .ag-center-cols-container .ag-cell button,
-  .ag-theme-alpine .ag-center-cols-container .ag-cell a {
+}
+
+/* ================================
+    Grid Container Styling
+================================= */
+
+/* Grid container */
+.ag-theme-alpine {
+    height: 500px;
+    width: 100%;
+    overflow-x: hidden; 
+}
+
+/* Edit and Delete button styling inside grid */
+.ag-theme-alpine .ag-center-cols-container .ag-cell button,
+.ag-theme-alpine .ag-center-cols-container .ag-cell a {
     font-size: 1em;
     padding: 5px 10px;
     border-radius: 4px;
-    margin-right: 10px; /* Add margin for spacing */
+    margin-right: 10px;
     text-decoration: none;
     color: white;
     text-align: center;
     display: inline-block;
-  }
-  
-  /* Edit button styling */
-  .ag-theme-alpine .ag-center-cols-container .ag-cell a {
+}
+
+/* Edit button styling */
+.ag-theme-alpine .ag-center-cols-container .ag-cell a {
     background-color: blue;
-  }
-  
-  /* Delete button styling */
-  .ag-theme-alpine .ag-center-cols-container .ag-cell button {
+}
+
+/* Delete button styling */
+.ag-theme-alpine .ag-center-cols-container .ag-cell button {
     background-color: red;
     border: none;
-  }
-  
-  /* Hover effect for Edit and Delete buttons */
-  .ag-theme-alpine .ag-center-cols-container .ag-cell a:hover,
-  .ag-theme-alpine .ag-center-cols-container .ag-cell button:hover {
+}
+
+/* Hover effect for Edit and Delete buttons */
+.ag-theme-alpine .ag-center-cols-container .ag-cell a:hover,
+.ag-theme-alpine .ag-center-cols-container .ag-cell button:hover {
     opacity: 0.9;
-  }
-  
-  /* Ensure Edit and Delete buttons are the same size */
-  .ag-theme-alpine .ag-center-cols-container .ag-cell button,
-  .ag-theme-alpine .ag-center-cols-container .ag-cell a {
-    min-width: 80px;
-    text-align: center;
-  }
-  
-  /* Make columns more responsive */
-  .ag-theme-alpine .ag-header-cell {
-    text-align: center;
-  }
-  
-  .ag-theme-alpine .ag-body-container {
-    width: 100%;
-    overflow-x: auto; /* Enables horizontal scroll only if necessary */
-  }
-  
-  /* Ag-Grid container styling */
-  .ag-theme-alpine {
-    height: 500px;
-    width: 100%; /* Ensure the grid width is 100% of its container */
-    overflow-x: hidden; /* Add horizontal scroll only if needed */
-  }
-  
-
-  /* Error Text */
-.error-text {
-  color: red;
-  text-align: center;
 }
 
-/* No Users Found Text */
-.no-users-text {
-  text-align: center;
-  font-weight: bold;
-}
+/* ================================
+    Search Container Styling
+================================= */
 
-/* Search Container */
+/* Search input and button */
 .search-container {
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
 }
-
 .search-input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 300px;
 }
 
-/* Grid Container */
-.grid-container {
-  height: 500px;
-  width: 100%;
-}
-
-/* Action Buttons */
-.action-buttons {
-  display: flex;
-}
-
-.edit-button {
-  text-decoration: none;
-  color: white;
-  background-color: blue;
-  padding: 5px 10px;
-  border-radius: 4px;
-  margin-right: 10px;
-}
-
-.delete-button {
-  cursor: pointer;
-  color: white;
-  background-color: red;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-}
