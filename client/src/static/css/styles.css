@@ -382,6 +382,17 @@ button[type="button"]:hover {
     opacity: 0.9;
 }
 
+/* Hover effect for Filter Icons */
+/* Light Mode - Filter Icons */
+.ag-theme-alpine .ag-icon-filter {
+  color: #000000; /* Black color for filter icons in light mode */
+}
+
+/* Dark Mode - Filter Icons */
+body.dark-mode .ag-theme-alpine .ag-icon-filter {
+  color: #ffffff; /* White color for filter icons in dark mode */
+}
+
 /* ================================
     Search Container Styling
 ================================= */
