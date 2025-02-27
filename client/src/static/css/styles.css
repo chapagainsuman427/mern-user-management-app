@@ -1,6 +1,135 @@
-/* ================================
-    General Heading Styles
-================================= */
+/* Default Light Mode */
+body {
+  background-color: #fff;
+  color: #000;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0; /* Slightly lighter than pure white for better readability */
+}
+
+/* Navbar */
+body.dark-mode .navbar-dark-mode {
+  background-color: #1a1a1a !important; /* Slightly lighter than the body for contrast */
+  border-bottom: 1px solid #333; /* Add a subtle border for separation */
+}
+
+/* Heading with "User List" */
+body.dark-mode .user-list-heading {
+  background-color: #1a1a1a; /* Match the dark background */
+  color: #e0e0e0; /* Ensure text is visible */
+  border-bottom: 1px solid #444; /* Add a subtle border for separation */
+}
+
+/* Ag-Grid Dark Mode */
+body.dark-mode .ag-theme-alpine {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+}
+
+body.dark-mode .ag-header {
+  background-color: #2a2a2a !important; /* Slightly lighter than the grid background */
+  color: #e0e0e0 !important; /* Ensure header text is visible */
+}
+
+body.dark-mode .ag-header-cell {
+  color: #e0e0e0 !important; /* Ensure column headings (e.g., First Name, Last Name) are visible */
+}
+
+body.dark-mode .ag-cell {
+  background-color: #1a1a1a !important;
+  color: #e0e0e0 !important;
+}
+
+body.dark-mode .ag-row {
+  background-color: #1a1a1a !important;
+  border-bottom: 1px solid #444 !important;
+}
+
+body.dark-mode .ag-row-odd {
+  background-color: #222 !important; /* Slightly different shade for odd rows */
+}
+
+body.dark-mode .ag-row-hover {
+  background-color: #333 !important; /* Highlight on hover */
+}
+
+/* Search Bar */
+body.dark-mode .search-input {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border: 1px solid #444; /* Subtle border */
+}
+
+body.dark-mode .search-input::placeholder {
+  color: #888; /* Placeholder text color */
+}
+
+/* Buttons */
+/* Add User Button */
+body.dark-mode .add-user-button {
+  background-color: #2a3f5f; /* Darker blue for better contrast in dark mode */
+  color: #e0e0e0;
+  border: 1px solid #3a4f6f; /* Slightly lighter border */
+}
+
+body.dark-mode .add-user-button:hover {
+  background-color: #3a4f6f; /* Slightly lighter on hover */
+  border-color: #4a5f7f;
+}
+
+/* Edit Button */
+body.dark-mode .edit-button {
+  background-color: #424242; /* Darker gray for better contrast in dark mode */
+  color: #e0e0e0;
+  border: 1px solid #525252; /* Add a border for better visibility */
+}
+
+body.dark-mode .edit-button:hover {
+  background-color: #525252; /* Slightly lighter on hover */
+  border-color: #626262;
+}
+
+/* Delete Button */
+body.dark-mode .delete-button {
+  background-color: #5a1a1a; /* Darker red for better contrast in dark mode */
+  color: #e0e0e0;
+  border: 1px solid #6a2a2a; /* Slightly lighter border */
+}
+
+body.dark-mode .delete-button:hover {
+  background-color: #6a2a2a; /* Slightly lighter on hover */
+  border-color: #7a3a3a;
+}
+
+/* General Links and Text */
+body.dark-mode a {
+  color: #4dabf7; /* A light blue for links */
+}
+
+body.dark-mode a:hover {
+  color: #6bc2ff; /* Slightly lighter on hover */
+}
+
+/* Inputs and Forms */
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border: 1px solid #444;
+}
+
+body.dark-mode input:focus,
+body.dark-mode textarea:focus,
+body.dark-mode select:focus {
+  border-color: #4dabf7; /* Highlight focus with a light blue border */
+  outline: none;
+}
+  
 
 /* Main heading style */
 h2 {
@@ -14,7 +143,6 @@ h2 {
     text-transform: capitalize;
     position: relative;
     padding-bottom: 10px;
-    background-color: #f5f5f5; 
     border-radius: 10px;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); 
     transition: all 0.3s ease;
